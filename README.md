@@ -3,7 +3,7 @@
 
 (Final Project: Consensys Blockchain Developer Bootcamp)
 
-<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="590"/> <br><h5>
+<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> <br><h5>
  *[Empty shelves](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html) by Nitashia Johnson for The New York Times.* </h5></br>   
 
 **<h3 style="color:#FFC733">Overview</h3>** 
