@@ -44,9 +44,8 @@ MVP only deals with the buyer side of the process. It presumes that the seller s
 
 **<h3 style="color:#FFC733">User Workflow</h3>** 
   1. users will have to register and sign in to access the store
-  2. a user will see the DECLARED INVENTORY and price as well as the currently available 
-     stock availability 
-  3. once they will elect how much product they want to buy, the will see the ledger update
+  2. a user will see the DECLARED INVENTORY and price as well as the current     stock availability 
+  3. once they elect how much product they want to buy, users will see the inventory   update
      in real time
 <p>&nbsp;</p> 
 
