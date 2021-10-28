@@ -4,13 +4,20 @@ import getWeb3 from "./getWeb3";
 
 import "./App.css";
 
+
 class App extends Component {
-  state = {
-    storageValue: 0,
-    web3: null,
-    accounts: null,
-    contract: null,
-    account: ''
+  constructor(props) {
+    super(props);
+    this.state = {
+      storageValue: 0,
+      web3: null,
+      accounts: null,
+      contract: null,
+      account: '',
+      inputValue: ''
+    };
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   };
 
   componentDidMount = async () => {
@@ -42,15 +49,6 @@ class App extends Component {
     }
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      account: '', // account state upadated on line 23
-      storageValue: 0
-    } 
-    
-  }
-
   runExample = async () => {
     const { accounts, contract } = this.state;
     // Stores a given value, 5 by default.
@@ -58,31 +56,58 @@ class App extends Component {
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.get().call();
+//  ice buyer box immune network stem earn quote merge replace steak poet
 
-    // Update state with the result.
+    // Update state with the result. --reset
     this.setState({ storageValue: response  });
   };
 
   handleClick(event){
     const contract = this.state.contract;
-    const accounts = this.state.account;
+    const accounts = this.state.accounts;
     let value = 3
-    contract.methods.set(value, {from: accounts})
+    contract.methods.set(value).send({ from: accounts[0] })
     .then(result => {
-      return contract.get.call()
+      return contract.methods.get().call()
     }).then(result => {
       return this.setState({storageValue: result})
     })
   }
 
+  handleInputChange = (e) => {
+    const target = e.target;
+    const value = target.value;
+    const inputValue = value.replace(/\D/g, '')
+    this.setState({
+      inputValue
+    })
+  }
+
+  handleSubmit = (e) => {
+    const contract = this.state.contract;
+    const accounts = this.state.accounts;
+    e.preventDefault()
+    let value = this.state.inputValue
+    contract.methods.set(value).send({ from: accounts[0] })
+    .then(result => {
+      return contract.methods.get().call()
+    }).then(result => {
+      return this.setState({storageValue: result})
+    })
+  }
+
+  isValid() {
+    if (this.state.inputValue === '') return false
+    else return true
+   }
+
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
     }
-
     return (
       <div className="container">
-        <h1>Good to Go!</h1>
+        <h1>Let's Make this Project Happen!</h1>
         <p>
           If your contracts compiled and migrated successfully, below will show
           a stored value of 5 (by default).
@@ -93,11 +118,27 @@ class App extends Component {
         <div>The stored value is: {this.state.storageValue}</div>
         <div>
           <p>Your account address is: {this.state.account}</p>
+        </div>
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label>Enter the amount:
+              <input
+                type="text"
+               // placeholder="enter only numbers..."
+                value={this.state.inputValue}
+                onChange={this.handleInputChange.bind(this)}
+                errorMessage={ this.isValid() ? '' : "This field is required." }
+              />
+            </label>
+            <button disabled={!this.isValid()} type="submit">Submit</button>
+          </form>
+        </div>
+        <div>
           <button onClick={this.handleClick.bind(this)}>Set Storage</button>
         </div>
       </div>
     );
   }
-}
+} 
 
 export default App;
