@@ -8,8 +8,8 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 /// @notice You can use this contract for basic supply chain assurance and control
 ///@dev Some functions will have the side effect of updating state
 contract SupplyManagement is Ownable {
-    /// @notice The account that deployed the contract
-    address public owner = msg.sender;
+    // /// @notice The account that deployed the contract
+    // address public override owner = msg.sender;
     /// @notice This is the amount of purchased items
     uint256 public skuCount;
 
@@ -25,25 +25,13 @@ contract SupplyManagement is Ownable {
       uint sku;
       uint price;
       Status state;
+      uint declaredDate;
       address payable seller;
       address payable buyer;
     }  
 
     event LogForSale(uint sku);
     event LogSold(uint sku);
-
-     /**
-     * @dev Throws if called by any account other than the owner.
-     */
-    modifier onlyOwner() {
-        require(owner() == _msgSender(), "Ownable: caller is not the owner");
-        _;
-    }
-
-    modifier isOwner () {
-      require (msg.sender == owner);
-      _;
-    }
 
     modifier verifyCaller (address _address) {
       require (msg.sender == _address);
@@ -73,8 +61,12 @@ contract SupplyManagement is Ownable {
       _;
     }
 
-     constructor() {
-      owner == msg.sender;
+    /// @notice Owner declares stock
+    /// @param _name of item
+    /// @param _price of item
+    /// @return Boolean to confirm that item was added for purchase
+    function declareStock (string name uint _sku uint _price uint _declaredDate;) public onlyOwner {
+      
     }
     
     /// @notice Select item and its quantity to purchase
@@ -98,29 +90,13 @@ contract SupplyManagement is Ownable {
     }
 
     /// @notice Complete your purchase
-    /// @param sku of item
+    /// @param sku of item for  purchase
     function buyItem(uint sku) public payable forSale(sku) paidEnough(items[sku].price) checkValue(sku) {
       items[sku].seller.transfer(items[sku].price);
       items[sku].buyer == msg.sender;
       items[sku].state = Status.Sold;
 
-      emit LogSold(sku);
+      emit LogSold(sku);     
     }
 
-   /**
-     * @dev Transfers ownership of the contract to a new account (`newOwner`).
-     * Can only be called by the current owner.
-     */
-    function transferOwnership(address newOwner) public virtual onlyOwner {
-        require(newOwner != address(0), "Ownable: new owner is the zero address");
-        _transferOwnership(newOwner);
-    }
-}
-
-contract myContract is Ownable {
-  uint a = 0;
-
-  function Change(uint newA) public onlyOwner {
-    a = newA;
-  }
 }
