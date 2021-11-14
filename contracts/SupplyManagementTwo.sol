@@ -1,18 +1,13 @@
-// SPDX-License-Identifier: GPL-3.0
-
 pragma solidity >=0.7.0 <0.9.0;
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 contract MarketPlace is ReentrancyGuard {
-    address payable public owner;
-    uint public startBlock; // stockOfferingStartDate
-    uint public endBlock; // stockOfferingEndDate
+    address public owner;
+    uint public startBlock; // itemOfferingStartDate
+    uint public endBlock; // itemOfferingEndDate
     uint private _itemIds;
     uint private _itemsSold;
-    uint public value = 0.1 ether; 
-    address payable public seller;
-    address payable public buyer;
     
     enum ItemState {
         ForSale,
@@ -27,20 +22,19 @@ contract MarketPlace is ReentrancyGuard {
     
     struct Item {
         uint itemId;
-        string name;
+        string itemName;
         address payable seller;
         address payable buyer;
         uint value;
         ItemState state;
+        uint startBlock;
+        uint endBlock;
     }
     
-    mapping(uint => Item) private items; // creates key value pair so we are able to retrieve an item based on its id 
+    mapping(uint => Item) private items; // creates key value pair so we are able to retrieve an item based on its properties
     
-    constructor(uint _value) payable {
-        owner = payable(msg.sender);
-        value = _value;
-        startBlock = block.number;
-        endBlock = startBlock + 1051200;
+    constructor() payable {
+        owner = msg.sender;
     }
     
     event LogForSale(uint itemId); 
@@ -70,21 +64,23 @@ contract MarketPlace is ReentrancyGuard {
         _;
     }
     
-     receive() external payable {
-            require(msg.value == 1 wei);
-        }
+    //  receive() external payable {
+    //         require(msg.value >= value);
+    //     }
     
-    function createMarketItem(string memory _name, uint _value) payable public {
+    function createMarketItem(string memory _itemName, uint _value) payable public nonReentrant {
         items[_itemIds] = Item({
-            name: _name,
+            itemName: _itemName,
             itemId: _itemIds,
             value: _value,
             state: ItemState.ForSale,
             seller: payable(msg.sender),
-            buyer: payable(address(0)) // this is an empty address because we don't have a buyer when we initialize 
+            buyer: payable(address(0)), // this is an empty address because we don't have a buyer when we initialize 
+            startBlock: block.number,
+            endBlock: startBlock + 1051200
          });
          _itemIds = _itemIds + 1;
-          emit LogForSale(_itemIds);
+         emit LogForSale(_itemIds);
     }
          
         function buyItem(uint itemId) public payable forSale(itemId) paidEnough(items[itemId].value) checkValue(itemId) nonReentrant {
@@ -95,4 +91,3 @@ contract MarketPlace is ReentrancyGuard {
          _itemsSold = _itemsSold + 1;
         }
 }
-
