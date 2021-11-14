@@ -10,11 +10,16 @@ contract MarketPlace is ReentrancyGuard {
     uint public endBlock; // stockOfferingEndDate
     uint private _itemIds;
     uint private _itemsSold;
-    uint256 public itemPrice = 0.1 ether; 
+    uint public value = 0.1 ether; 
+    address payable public seller;
+    address payable public buyer;
     
-    enum State {
+    enum ItemState {
         ForSale,
-        Sold,
+        Sold
+    }
+    
+    enum SotckOfferingState {
         Started,
         Running,
         Ended
@@ -25,14 +30,15 @@ contract MarketPlace is ReentrancyGuard {
         string name;
         address payable seller;
         address payable buyer;
-        uint price;
-        State state;
+        uint value;
+        ItemState state;
     }
     
     mapping(uint => Item) private items; // creates key value pair so we are able to retrieve an item based on its id 
     
-    constructor() {
+    constructor(uint _value) payable {
         owner = payable(msg.sender);
+        value = _value;
         startBlock = block.number;
         endBlock = startBlock + 1051200;
     }
@@ -41,26 +47,26 @@ contract MarketPlace is ReentrancyGuard {
     event LogSold(uint itemId);
     
     
-    modifier paidEnough (uint _price) {
-        require(msg.value >= _price, "Please submit the asking price in order to complete the purchase.");
+    modifier paidEnough (uint _value) {
+        require(msg.value >= _value, "Please submit the asking price in order to complete the purchase.");
         _;
     }
     
     modifier checkValue (uint _itemId) {
         _;
-        uint _price = items[_itemId].price;
-        uint amountToRefund = msg.value - _price;
+        uint _value = items[_itemId].value;
+        uint amountToRefund = msg.value - _value;
         items[_itemId].buyer.transfer(amountToRefund);
     }
     
     modifier forSale(uint _itemId) {
-        require (items[_itemId].state == State.ForSale
+        require (items[_itemId].state == ItemState.ForSale
         && items[_itemId].itemId >= 0);
         _;
     }
     
     modifier sold(uint _itemId) {
-        require (items[_itemId].state == State.Sold);
+        require (items[_itemId].state == ItemState.Sold);
         _;
     }
     
@@ -68,27 +74,23 @@ contract MarketPlace is ReentrancyGuard {
             require(msg.value == 1 wei);
         }
     
-    function createMarketItem(string memory _name, uint _price) public payable nonReentrant {
-        require(_price == 1 wei);
-        
+    function createMarketItem(string memory _name, uint _value) payable public {
         items[_itemIds] = Item({
             name: _name,
             itemId: _itemIds,
-            price: _price,
-            state: State.ForSale,
+            value: _value,
+            state: ItemState.ForSale,
             seller: payable(msg.sender),
             buyer: payable(address(0)) // this is an empty address because we don't have a buyer when we initialize 
-            
          });
          _itemIds = _itemIds + 1;
           emit LogForSale(_itemIds);
-        
     }
          
-        function buyItem(uint itemId) public payable forSale(itemId) paidEnough(items[itemId].price) checkValue(itemId) nonReentrant {
-         items[itemId].seller.transfer(items[itemId].price);
+        function buyItem(uint itemId) public payable forSale(itemId) paidEnough(items[itemId].value) checkValue(itemId) nonReentrant {
+         items[itemId].seller.transfer(items[itemId].value);
          items[itemId].buyer == msg.sender;
-         items[itemId].state = State.Sold;
+         items[itemId].state = ItemState.Sold;
          emit LogSold(itemId);
          _itemsSold = _itemsSold + 1;
         }
