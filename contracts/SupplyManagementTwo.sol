@@ -1,9 +1,11 @@
+/ SPDX-License-Identifier: GPL-3.0
+
 pragma solidity >=0.7.0 <0.9.0;
 
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MarketPlace is ReentrancyGuard {
-    address public owner;
+contract MarketPlace is ReentrancyGuard, Ownable {
     uint public startBlock; // itemOfferingStartDate
     uint public endBlock; // itemOfferingEndDate
     uint private _itemIds;
@@ -33,9 +35,6 @@ contract MarketPlace is ReentrancyGuard {
     
     mapping(uint => Item) private items; // creates key value pair so we are able to retrieve an item based on its properties
     
-    constructor() payable {
-        owner = msg.sender;
-    }
     
     event LogForSale(uint itemId); 
     event LogSold(uint itemId);
@@ -64,10 +63,6 @@ contract MarketPlace is ReentrancyGuard {
         _;
     }
     
-    //  receive() external payable {
-    //         require(msg.value >= value);
-    //     }
-    
     function createMarketItem(string memory _itemName, uint _value) payable public nonReentrant {
         items[_itemIds] = Item({
             itemName: _itemName,
@@ -91,3 +86,4 @@ contract MarketPlace is ReentrancyGuard {
          _itemsSold = _itemsSold + 1;
         }
 }
+
