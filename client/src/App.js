@@ -56,7 +56,6 @@ class App extends Component {
 
     // Get the value from the contract to prove it worked.
     const response = await contract.methods.get().call();
-//  ice buyer box immune network stem earn quote merge replace steak poet
 
     // Update state with the result. --reset
     this.setState({ storageValue: response  });
