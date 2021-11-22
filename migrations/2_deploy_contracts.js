@@ -1,7 +1,5 @@
-var SimpleStorage = artifacts.require("./SimpleStorage.sol");
-var SupplyManagement = artifacts.require("./SupplyManagement.sol");
+var Marketplace = artifacts.require("./MarketPlace.sol");
 
 module.exports = function(deployer) {
-  deployer.deploy(SimpleStorage);
-  deployer.deploy(SupplyManagement);
+  deployer.deploy(Marketplace);
 };
