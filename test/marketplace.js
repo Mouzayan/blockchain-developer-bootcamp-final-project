@@ -1,3 +1,4 @@
+let BN = web3.utils.BN;
 const MarketPlace = artifacts.require('MarketPlace');
 const { items: ItemStruct, isDefined, isPayable, isType } = require("./ast-helper");
 
@@ -7,7 +8,17 @@ before(async() => {
   marketplace = await MarketPlace.deployed();
 });
 
-describe("Variables", () => {
+describe("deployment", async()=> {
+  it('deploys successfully', async () => {
+    const address = await marketplace.address
+    assert.notEqual(address, 0x0)
+    assert.notEqual(address, '')
+    assert.notEqual(address, null)
+    assert.notEqual(address, undefined)
+  })
+})
+
+describe("variables", () => {
     it("should have an owner", async () => {
       assert.equal(typeof marketplace.owner, 'function', "the contract has no owner");
     });
@@ -155,11 +166,22 @@ describe("Item struct", () => {
 
 });
 
-// it('Should create a new item', async () => {
-//   await marketplace.createMarketItem('pencil',20,100);
-//   const marketItem = await marketplace.get(1);
-//   assert(1 === 'pencil')
-// });
+describe("items", async() => {
+  let result, sku
+
+before(async () => {
+  result = await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 100)
+  sku = await marketplace.skuCount()
+})
+
+  it('creates items', async () => {
+    assert.equal(sku, 1)
+    console.log(result.logs)
+    const event = result.logs[0].args
+    assert.equal(event.sku.toNumber(), 1)
+  })
+
+})
 
    });
 });

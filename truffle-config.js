@@ -1,4 +1,9 @@
 const path = require("path");
+ const HDWalletProvider = require('@truffle/hdwallet-provider');
+ const infuraURL = 'https://rinkeby.infura.io/v3/636e4a5d833644d0951cf2b96b549b2f'
+
+ const fs = require('fs');
+ const mnemonic = fs.readFileSync(".secret").toString().trim();
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
@@ -12,9 +17,15 @@ module.exports = {
     }
   },
 
+  rinkeby: {
+      provider: () => new HDWalletProvider(mnemonic, infuraURL),
+      network_id: 4,          // Rinkeby's network id
+      gas: 5500000,        
+    },
+
   compilers: {
-    // solc: {
-    //   version: "^0.8.4",
-    // },
+    solc: {
+      version: "^0.8.4",
+    },
   }
 };

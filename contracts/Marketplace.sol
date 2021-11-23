@@ -6,6 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract MarketPlace is ReentrancyGuard, Ownable {
     uint public skuCount = 0;
+    uint public salesCount = 0; //to keep track of how many purchases are stored in the mapping
 
     enum SaleState {
         Started,
@@ -28,8 +29,6 @@ contract MarketPlace is ReentrancyGuard, Ownable {
     
     event LogSold(uint sku, uint qty, address buyer);
     event LogForSale(uint sku); 
-    
-    mapping(address => uint) public purchasedAmt; // how many did each address buy
     
     
     modifier onSale(uint _sku){
@@ -57,7 +56,7 @@ contract MarketPlace is ReentrancyGuard, Ownable {
     function createMarketItem(string memory _itemName, uint _itemPrice, uint _qty) payable public
         nonReentrant returns (bool)
     {
-        items[skuCount] = Item({
+        items[skuCount] = Item({ //adding Item to items mapping
             sku: skuCount,
             itemName: _itemName,
             itemPrice: _itemPrice,
@@ -70,8 +69,8 @@ contract MarketPlace is ReentrancyGuard, Ownable {
             saleTotal: 0
             
         });
-        emit LogForSale(skuCount);
         skuCount = skuCount + 1;
+        emit LogForSale(skuCount);
         return true;
     }
     
