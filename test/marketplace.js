@@ -161,9 +161,6 @@ describe("Item struct", () => {
           "`endBlock` should be of type `uint`"
         );
       });
-
-      
-
 });
 
 describe("items", async() => {
