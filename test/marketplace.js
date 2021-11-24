@@ -1,8 +1,11 @@
-let BN = web3.utils.BN;
-const MarketPlace = artifacts.require('MarketPlace');
-const { items: ItemStruct, isDefined, isPayable, isType } = require("./ast-helper");
+let BN = web3.utils.BN
+const MarketPlace = artifacts.require('MarketPlace')
+const { items: ItemStruct, isDefined, isPayable, isType } = require("./ast-helper")
+require('chai')
+  .use(require('chai-as-promised'))
+  .should()
 
-contract('MarketPlace',() => {
+contract('MarketPlace',([deployer, seller, buyer]) => {
 let marketplace = null;
 before(async() => {
   marketplace = await MarketPlace.deployed();
@@ -164,21 +167,33 @@ describe("Item struct", () => {
 });
 
 describe("items", async() => {
-  let result, sku
+  let result, skuCount
 
 before(async () => {
-  result = await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 100)
+  result = await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 100, { from: seller })
   sku = await marketplace.skuCount()
 })
-
   it('creates items', async () => {
+    // success
     assert.equal(sku, 1)
-    console.log(result.logs)
     const event = result.logs[0].args
     assert.equal(event.sku.toNumber(), 1)
+    // failure: product must have a name
+    await await marketplace.createMarketItem('', web3.utils.toWei('1', 'Ether'), 100, { from: seller }).should.be.rejected;
+    // failure: product must have a price
+     await await marketplace.createMarketItem('book', 0, 100, { from: seller }).should.be.rejected;
+    // failure: product must have a quantity
+     await await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 0, { from: seller }).should.be.rejected;
+  })
+  
+  it('lists items', async () => {
+    const item = await marketplace.items(skuCount)
+    assert.equal(item.skuCount.toNumber(), 1)
+    assert.equal(item._itemName, 'book', 'item name is correct')
+    assert.equal(item._itemPrice, '1000000000000000000', 'item price is correct')
+    assert.equal(item._qty, '100', 'item quantity is correct')
   })
 
 })
-
    });
 });

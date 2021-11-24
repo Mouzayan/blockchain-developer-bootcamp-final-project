@@ -56,6 +56,10 @@ contract MarketPlace is ReentrancyGuard, Ownable {
     function createMarketItem(string memory _itemName, uint _itemPrice, uint _qty) payable public
         nonReentrant returns (bool)
     {
+      require(bytes(_itemName).length > 0);
+      require(_itemPrice > 0);
+      require(_qty > 0);
+
         items[skuCount] = Item({ //adding Item to items mapping
             sku: skuCount,
             itemName: _itemName,
@@ -73,6 +77,8 @@ contract MarketPlace is ReentrancyGuard, Ownable {
         emit LogForSale(skuCount);
         return true;
     }
+
+    
     
         function buyItem(uint _sku, uint qty) public payable // purchase qty = 3, stock items[_sku].qty =10
             onSale(_sku)
