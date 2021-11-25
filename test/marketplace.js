@@ -31,136 +31,125 @@ describe("variables", () => {
     });
 
     describe("enum SaleState", () => {
-      let enumSaleState;
+      let enumState;
       before(() => {
-        enumSaleState = MarketPlace.enums.SaleState;
+        enumState = MarketPlace.enums.SaleState;
         assert(
-          enumSaleState,
+          enumState,
           "The contract should define an Enum called SaleState"
         );
       });
 
       it("should define `Started`", () => {
         assert(
-          enumSaleState.hasOwnProperty('Started'),
+          enumState.hasOwnProperty('Started'),
           "The enum does not have a `Started` value"
         );
       });
 
       it("should define `Running`", () => {
         assert(
-          enumSaleState.hasOwnProperty('Running'),
+          enumState.hasOwnProperty('Running'),
           "The enum does not have a `Running` value"
         );
       });
 
       it("should define `Ended`", () => {
         assert(
-          enumSaleState.hasOwnProperty('Ended'),
+          enumState.hasOwnProperty('Ended'),
           "The enum does not have a `Ended` value"
         );
       });
 })
 
 describe("Item struct", () => {
-      let subjectStruct;
+      let itemStruct;
 
       before(() => {
-        subjectStruct = ItemStruct(MarketPlace);
+        itemStruct = ItemStruct(MarketPlace);
         assert(
-          subjectStruct !== null, 
+          itemStruct !== null, 
           "The contract should define an `Item Struct`"
         );
       });
 
        it("should have an `itemName`", () => {
         assert(
-          isDefined(subjectStruct)("itemName"), 
+          isDefined(itemStruct)("itemName"), 
           "Struct Item should have a `itemName` member"
         );
         assert(
-          isType(subjectStruct)("itemName")("string"), 
+          isType(itemStruct)("itemName")("string"), 
           "`itemName` should be of type `string`"
         );
       });
 
       it("should have a `sku`", () => {
         assert(
-          isDefined(subjectStruct)("sku"), 
+          isDefined(itemStruct)("sku"), 
           "Struct Item should have a `sku` member"
         );
         assert(
-          isType(subjectStruct)("sku")("uint"), 
+          isType(itemStruct)("sku")("uint"), 
           "`sku` should be of type `uint`"
         );
       });
 
       it("should have a `itemPrice`", () => {
         assert(
-          isDefined(subjectStruct)("itemPrice"), 
+          isDefined(itemStruct)("itemPrice"), 
           "Struct Item should have a `itemPrice` member"
         );
         assert(
-          isType(subjectStruct)("itemPrice")("uint"), 
+          isType(itemStruct)("itemPrice")("uint"), 
           "`itemPrice` should be of type `uint`"
         );
       });
 
-      it("should have a `state`", () => {
+      it("should have a `owner`", () => {
         assert(
-          isDefined(subjectStruct)("state"), 
-          "Struct Item should have a `state` member"
+          isDefined(itemStruct)("owner"), 
+          "Struct Item should have a `owner` member"
         );
         assert(
-          isType(subjectStruct)("state")("SaleState"), 
-          "`state` should be of type `SaleState`"
-        );
-      });
-
-      it("should have a `seller`", () => {
-        assert(
-          isDefined(subjectStruct)("seller"), 
-          "Struct Item should have a `seller` member"
+          isType(itemStruct)("owner")("address"), 
+          "`owner` should be of type `address`"
         );
         assert(
-          isType(subjectStruct)("seller")("address"), 
-          "`seller` should be of type `address`"
-        );
-        assert(
-          isPayable(subjectStruct)("seller"), 
-          "`seller` should be payable"
+          isPayable(itemStruct)("owner"), 
+          "`owner` should be payable"
         );
       });
 
       it("should have a `qty`", () => {
         assert(
-          isDefined(subjectStruct)("qty"), 
+          isDefined(itemStruct)("qty"), 
           "Struct Item should have a `qty` member"
         );
         assert(
-          isType(subjectStruct)("qty")("uint"), 
+          isType(itemStruct)("qty")("uint"), 
           "`qty` should be of type `uint`"
         );
       });
 
       it("should have a `startBlock`", () => {
         assert(
-          isDefined(subjectStruct)("startBlock"), 
+          isDefined(itemStruct)("startBlock"), 
           "Struct Item should have a `startBlock` member"
         );
         assert(
-          isType(subjectStruct)("startBlock")("uint"), 
+          isType(itemStruct)("startBlock")("uint"), 
           "`startBlock` should be of type `uint`"
         );
       });
 
       it("should have a `endBlock`", () => {
         assert(
-          isDefined(subjectStruct)("endBlock"), 
+          isDefined(itemStruct)("endBlock"), 
           "Struct Item should have a `endBlock` member"
         );
         assert(
-          isType(subjectStruct)("endBlock")("uint"), 
+          isType(itemStruct)("endBlock")("uint"), 
           "`endBlock` should be of type `uint`"
         );
       });
@@ -185,7 +174,8 @@ before(async () => {
       // failure: product must have a quantity
       await await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 0, { from: seller }).should.be.rejected;
     })
-  
+
+
     it('lists items', async () => {
       const item = await marketplace.items(sku)
       assert.equal(item.sku.toNumber(), 1)
@@ -194,20 +184,30 @@ before(async () => {
       assert.equal(item.qty, '100', 'item quantity is correct')
     })
 
-    it('sells items and transfers eth to seller', async () => {
-      let itemPrice = web3.utils.toWei('1', 'Ether')
-      itemPrice = new web3.utils.BN(itemPrice)
+    it('sells items and transfers value to seller', async () => {
+      // Track seller balance before and after purchase
+      let startSellerBalance = await web3.eth.getBalance(seller)
+      startSellerBalance = new BN(startSellerBalance)
 
-      // success: buyer makes purchase
-      result = await marketplace.buyItem(sku, { from: buyer, value: web3.utils.toWei('1', 'Ether') })
+      // SUCCESS: buyer makes purchase
+      result = await marketplace.buyItem(sku, 2, { from: buyer, value: web3.utils.toWei('2', 'Ether') })
       // check logs
       const event = result.logs[0].args
-      coonsole.log(event)
       assert.equal(event.sku.toNumber(), 1)
       assert.equal(event.itemName, 'book', 'item name is correct')
-      assert.equal(event.itemPrice, itemPrice, 'item price is correct')
-      assert.equal(event.owner, 'buyer', 'owner is correct')
+      assert.equal(event.itemPrice, '1000000000000000000', 'price is correct')
+      assert.equal(event.owner, buyer, 'owner is correct')
       assert.equal(event.purchased, true, 'purchased is correct')
+
+      // check that seller received funds (how much they had before, how much they have after)
+      let endSellerBalance = await web3.eth.getBalance(seller)
+      endSellerBalance = new BN(endSellerBalance)
+
+      let itemPrice = web3.utils.toWei('2', 'Ether')
+      itemPrice = new BN(itemPrice)
+
+      const expectedBalance = startSellerBalance.add(itemPrice)
+      assert.equal(endSellerBalance.toString(), expectedBalance.toString())
       })
     })
   })

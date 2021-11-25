@@ -20,14 +20,15 @@ contract MarketPlace is ReentrancyGuard, Ownable {
         SaleState state;
         uint qty;
         uint itemsSold;
-        address payable seller;
+        address payable owner;
         uint startBlock;
         uint endBlock;
         uint saleTotal;
+        bool purchased;
     }
     mapping(uint => Item) public items; // creates key value pair so we are able to retrieve an item based on its properties
     
-    event LogSold(uint sku, string itemName, uint qty, uint itemPrice, address buyer, bool purchased);
+    event LogSold(uint sku, string itemName, uint qty, uint itemPrice, address payable owner, bool purchased);
     event LogForSale(uint sku); 
     
     
@@ -67,10 +68,11 @@ contract MarketPlace is ReentrancyGuard, Ownable {
             state: SaleState.Running,
             qty: _qty,
             itemsSold: 0,
-            seller: payable(msg.sender),
+            owner: payable(msg.sender),
             startBlock: block.number,
             endBlock:  block.number + 1051200,
-            saleTotal: 0
+            saleTotal: 0,
+            purchased: false
             
         });
         emit LogForSale(skuCount);
@@ -86,20 +88,24 @@ contract MarketPlace is ReentrancyGuard, Ownable {
           // fetch the item to buy
             Item memory _item = items[skuCount];
           // fetch the owner
-            // address _seller = _item.seller;
+          address payable seller = _item.owner;
+          // require that the buyer is not the seller
+            require(seller != msg.sender);
+           // transfer ownership to the buyer
+           _item.owner = payable(msg.sender);
             require(items[_sku].state == SaleState.Running);
             require(qty <= items[_sku].qty);
             items[_sku].qty -= qty;
             items[_sku].itemsSold += qty;
-            //items[_sku].buyer[msg.sender] += qty; // updating the total amount that msg.sender has purchased
-             
-            uint totalPaid = items[_sku].itemPrice * qty;
-            items[_sku].seller.transfer(totalPaid);
-            items[_sku].saleTotal += totalPaid;
-          // Transfer ownership to the buyer
-          transferOwnership(msg.sender);
           // update the product in the mapping
           items[skuCount] = _item;
-            emit LogSold(_sku, _item.itemName, qty, items[_sku].itemPrice, msg.sender, true);
+          // mark as purchased
+          items[_sku].purchased = true;
+          // pay the seller by sending them ether
+            uint totalPaid = items[_sku].itemPrice * qty;
+            seller.transfer(msg.value);
+            items[_sku].saleTotal += totalPaid;
+
+            emit LogSold(_sku, _item.itemName, qty, _item.itemPrice, payable(msg.sender), true);
         }
 }
