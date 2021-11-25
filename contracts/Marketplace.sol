@@ -27,7 +27,7 @@ contract MarketPlace is ReentrancyGuard, Ownable {
     }
     mapping(uint => Item) public items; // creates key value pair so we are able to retrieve an item based on its properties
     
-    event LogSold(uint sku, uint qty, address buyer);
+    event LogSold(uint sku, string itemName, uint qty, uint itemPrice, address buyer, bool purchased);
     event LogForSale(uint sku); 
     
     
@@ -59,7 +59,7 @@ contract MarketPlace is ReentrancyGuard, Ownable {
       require(bytes(_itemName).length > 0);
       require(_itemPrice > 0);
       require(_qty > 0);
-
+      skuCount = skuCount + 1;
         items[skuCount] = Item({ //adding Item to items mapping
             sku: skuCount,
             itemName: _itemName,
@@ -73,20 +73,20 @@ contract MarketPlace is ReentrancyGuard, Ownable {
             saleTotal: 0
             
         });
-        skuCount = skuCount + 1;
         emit LogForSale(skuCount);
         return true;
     }
 
-    
-    
         function buyItem(uint _sku, uint qty) public payable // purchase qty = 3, stock items[_sku].qty =10
             onSale(_sku)
-            
             paidEnough(items[_sku].itemPrice, qty)
             checkValue(_sku,  qty)
             nonReentrant
         {
+          // fetch the item to buy
+            Item memory _item = items[skuCount];
+          // fetch the owner
+            // address _seller = _item.seller;
             require(items[_sku].state == SaleState.Running);
             require(qty <= items[_sku].qty);
             items[_sku].qty -= qty;
@@ -96,7 +96,10 @@ contract MarketPlace is ReentrancyGuard, Ownable {
             uint totalPaid = items[_sku].itemPrice * qty;
             items[_sku].seller.transfer(totalPaid);
             items[_sku].saleTotal += totalPaid;
-             
-            emit LogSold(_sku, qty, msg.sender);
+          // Transfer ownership to the buyer
+          transferOwnership(msg.sender);
+          // update the product in the mapping
+          items[skuCount] = _item;
+            emit LogSold(_sku, _item.itemName, qty, items[_sku].itemPrice, msg.sender, true);
         }
 }

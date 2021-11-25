@@ -173,27 +173,42 @@ before(async () => {
   result = await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 100, { from: seller })
   sku = await marketplace.skuCount()
 })
-  it('creates items', async () => {
-    // success
-    assert.equal(sku, 1)
-    const event = result.logs[0].args
-    assert.equal(event.sku.toNumber(), 1)
-    // failure: product must have a name
-    await await marketplace.createMarketItem('', web3.utils.toWei('1', 'Ether'), 100, { from: seller }).should.be.rejected;
-    // failure: product must have a price
-     await await marketplace.createMarketItem('book', 0, 100, { from: seller }).should.be.rejected;
-    // failure: product must have a quantity
-     await await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 0, { from: seller }).should.be.rejected;
-  })
+    it('creates items', async () => {
+      // success
+      assert.equal(sku, 1)
+      const event = result.logs[0].args
+      assert.equal(event.sku.toNumber(), 1)
+      // failure: product must have a name
+      await await marketplace.createMarketItem('', web3.utils.toWei('1', 'Ether'), 100, { from: seller }).should.be.rejected;
+      // failure: product must have a price
+      await await marketplace.createMarketItem('book', 0, 100, { from: seller }).should.be.rejected;
+      // failure: product must have a quantity
+      await await marketplace.createMarketItem('book', web3.utils.toWei('1', 'Ether'), 0, { from: seller }).should.be.rejected;
+    })
   
-  it('lists items', async () => {
-    const item = await marketplace.items(skuCount)
-    assert.equal(item.skuCount.toNumber(), 1)
-    assert.equal(item._itemName, 'book', 'item name is correct')
-    assert.equal(item._itemPrice, '1000000000000000000', 'item price is correct')
-    assert.equal(item._qty, '100', 'item quantity is correct')
-  })
+    it('lists items', async () => {
+      const item = await marketplace.items(sku)
+      assert.equal(item.sku.toNumber(), 1)
+      assert.equal(item.itemName, 'book', 'item name is correct')
+      assert.equal(item.itemPrice, '1000000000000000000', 'item price is correct')
+      assert.equal(item.qty, '100', 'item quantity is correct')
+    })
 
+    it('sells items and transfers eth to seller', async () => {
+      let itemPrice = web3.utils.toWei('1', 'Ether')
+      itemPrice = new web3.utils.BN(itemPrice)
+
+      // success: buyer makes purchase
+      result = await marketplace.buyItem(sku, { from: buyer, value: web3.utils.toWei('1', 'Ether') })
+      // check logs
+      const event = result.logs[0].args
+      coonsole.log(event)
+      assert.equal(event.sku.toNumber(), 1)
+      assert.equal(event.itemName, 'book', 'item name is correct')
+      assert.equal(event.itemPrice, itemPrice, 'item price is correct')
+      assert.equal(event.owner, 'buyer', 'owner is correct')
+      assert.equal(event.purchased, true, 'purchased is correct')
+      })
+    })
+  })
 })
-   });
-});
