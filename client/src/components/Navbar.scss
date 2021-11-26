@@ -1,0 +1,14 @@
+@import '../style/mixins.scss';
+
+.navbar {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  border: 0.25rem solid var(--danger-color);
+  border-radius: 3px;
+
+  a {
+    margin-right: 2rem;
+    margin-left: 2rem;
+  }
+}

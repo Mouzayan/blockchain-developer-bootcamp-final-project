@@ -107,5 +107,5 @@ contract MarketPlace is ReentrancyGuard, Ownable {
             items[_sku].saleTotal += totalPaid;
 
             emit LogSold(_sku, _item.itemName, qty, _item.itemPrice, payable(msg.sender), true);
-        }
+    }
 }

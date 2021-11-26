@@ -208,6 +208,20 @@ before(async () => {
 
       const expectedBalance = startSellerBalance.add(itemPrice)
       assert.equal(endSellerBalance.toString(), expectedBalance.toString())
+
+      // FAILURE: tries to buy item that does not exist (item must have valid sku)
+      await marketplace.buyItem(99, 2, { from: buyer, value: web3.utils.toWei('2', 'Ether') }).should.be.rejected;
+
+      // FAILURE: tries to buy product without enough ether
+      await marketplace.buyItem(sku, 2, { from: buyer, value: web3.utils.toWei('0.5', 'Ether') }).should.be.rejected;
+      console.log('succsess 3')
+
+      // FAILURE: Buyer can't be seller
+      // await marketplace.buyItem(sku, 2, { from: seller, value: web3.utils.toWei('2', 'Ether') }).should.be.rejected;
+
+      // FAILURE: Deployer tries to buy the product
+      // await marketplace.buyItem(sku, 2, { from: deployer, value: web3.utils.toWei('2', 'Ether') }).should.be.rejected;
+
       })
     })
   })

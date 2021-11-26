@@ -1,0 +1,41 @@
+.form {
+  label,
+  input,
+  textarea {
+    display: block;
+  }
+
+  label {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    margin-bottom: 1rem;
+    background: var(--dark-color);
+    padding: 0.3rem 0.5rem;
+    border-radius: 3px;
+  }
+
+  textarea {
+    resize: none;
+    height: 200px;
+  }
+
+  .btn-save,
+  .btn-cancel {
+    @include btn();
+    margin-right: 1rem;
+  }
+
+  .btn-save {
+    background: var(--danger-color);
+  }
+
+  .btn-cancel {
+    background: var(--fussy-color);
+  }
+}

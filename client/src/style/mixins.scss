@@ -1,0 +1,26 @@
+@mixin btn() {
+  padding: 0.4rem 0.5rem;
+  border-radius: 5px;
+  background-color: #f5efe8;
+
+  &:hover {
+    box-shadow: var(--box-shadow);
+  }
+}
+
+@mixin lnk() {
+  color: var(--text-link-color);
+  font-weight: bold;
+
+  &:hover {
+    text-decoration-line: line-through;
+    text-decoration-color: var(--fussy-color);
+  }
+}
+
+@mixin card() {
+  border-radius: 3px;
+  padding: 1rem;
+  background: var(--light-color);
+  box-shadow: var(--box-shadow);
+}
