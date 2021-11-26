@@ -1,12 +1,11 @@
-import React, { Component } from "react";
-import MarketPlaceContract from "./contracts/MarketPlace.json";
-import getWeb3 from "./getWeb3";
+import React, { Component } from 'react';
+import MarketPlaceContract from './contracts/MarketPlace.json';
+import getWeb3 from './getWeb3';
 import Navbar from './components/Navbar';
 import Main from './components/Main';
 import './style/index.scss';
 
-export default class App extends Component {
-
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -16,11 +15,11 @@ export default class App extends Component {
       account: '',
       skuCount: 0,
       items: [],
-      loading: true
+      loading: true,
     };
     this.createItem = this.createItem.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
-  };
+  }
 
   componentDidMount = async () => {
     try {
@@ -29,45 +28,52 @@ export default class App extends Component {
       // Use web3 to get the user's accounts.
       const accounts = await web3.eth.getAccounts();
       // reading user account state
-      this.setState({ account: accounts[0] })
+      this.setState({ account: accounts[0] });
       // Get the contract instance.
       const networkId = await web3.eth.net.getId();
-      console.log(MarketPlaceContract.abi, MarketPlaceContract.networks[networkId].address)
+      console.log(
+        MarketPlaceContract.abi,
+        MarketPlaceContract.networks[networkId].address
+      );
       const deployedNetwork = MarketPlaceContract.networks[networkId];
       const instance = new web3.eth.Contract(
         MarketPlaceContract.abi,
-        deployedNetwork && deployedNetwork.address,
+        deployedNetwork && deployedNetwork.address
       );
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
-      this.setState({ web3, accounts, contract: instance, loading : false }, this.runExample);
+      // this.setState({ web3, accounts, contract: instance, loading : false }, this.runFunctionality);
+      this.setState({ web3, accounts, contract: instance, loading: false });
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
-        `Failed to load web3, accounts, or contract. Check console for details.`,
+        `Failed to load web3, accounts, or contract. Check console for details.`
       );
       console.error(error);
     }
   };
 
-  // runExample = async () => {
-  //   const { accounts, contract } = this.state;
-  //   // Stores a given value, 5 by default.
-  //   // await contract.methods.set(5).send({ from: accounts[0] });
+  runFunctionality = async () => {
+    const { accounts, contract } = this.state;
+    // Stores a given value, 5 by default.
+    // await contract.methods.set(5).send({ from: accounts[0] });
 
-  //   // Get the value from the contract to prove it worked.
-  //   // const response = await contract.methods.get().call();
+    // Get the value from the contract to prove it worked.
+    // const response = await contract.methods.get().call();
 
-  //   // Update state with the result. --reset
-  //   // this.setState({ storageValue: response  });
-  // };
+    // Update state with the result. --reset
+    // this.setState({ storageValue: response  });
+  };
 
   createItem(name, price, quantity) {
-    this.setState.loading({ loading: true })
-    this.state.contract.methods.createMarketItem(name, price, quantity).send({ from: this.state.account })
-    .once('receipt', (receipt) => {
-      this.setState({ loading: false })
-    })
+    const { account, contract } = this.state;
+    // this.setState.loading({ loading: true })
+    contract.methods
+      .createMarketItem(name, price, quantity)
+      .send({ from: account })
+      .once('receipt', (receipt) => {
+        this.setState({ loading: false });
+      });
   }
 
   // handleClick(event){
@@ -105,11 +111,10 @@ export default class App extends Component {
   // }
 
   isValid() {
-    if (this.state.inputValue === '') return false
-    else return true
-   }
+    if (this.state.inputValue === '') return false;
+    else return true;
+  }
 
-  
   render() {
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contract...</div>;
@@ -117,14 +122,17 @@ export default class App extends Component {
     return (
       <div className="container">
         <Navbar account={this.state.account} />
-        { this.state.loading 
-          ? <div><p>"Loading..."</p></div> 
-          : <Main 
-              createItem = {this.createItem} 
-            /> 
-        }
+        <div>
+          {this.state.loading ? (
+            <div>
+              <p>"Loading..."</p>
+            </div>
+          ) : (
+            <Main createItem={this.createItem} web3={this.state.web3} />
+          )}
+        </div>
       </div>
     );
   }
-} 
-
+}
+export default App;
