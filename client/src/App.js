@@ -35,19 +35,16 @@ class App extends Component {
         MarketPlaceContract.abi,
         MarketPlaceContract.networks[networkId].address
       );
-      const networkData = MarketPlaceContract.networks[networkId];
-      const marketplace = new web3.eth.Contract(
+      const deployedNetwork = MarketPlaceContract.networks[networkId];
+      const instance = new web3.eth.Contract(
         MarketPlaceContract.abi,
-        networkData && networkData.address
+        deployedNetwork && deployedNetwork.address
       );
       // Set web3, accounts, and contract to the state, and then proceed with an
       // example of interacting with the contract's methods.
       // this.setState({ web3, accounts, contract: instance, loading : false }, this.runFunctionality);
-      this.setState({ web3, accounts });
-      this.setState({ marketplace })
-      const itemCount = await marketplace.methods.skuCount().call()
-      console.log(itemCount.toString())
-      this.setState({ loading: false })
+      this.setState({ web3, accounts, contract: instance, loading : false }, this.runList);
+      //this.setState({ loading: false })
     } catch (error) {
       // Catch any errors for any of the above operations.
       alert(
@@ -57,15 +54,24 @@ class App extends Component {
     }
   };
 
+  // runList = async () => {
+  //   const { contract } = this.state;
+
+  //   const itemCount = await contract.methods.skuCount().call()
+  //   console.log(itemCount.toString())
+
+  // };
+
   createItem(name, price, quantity) {
-    const { account, marketplace } = this.state;
-    this.setState.loading({ loading: true })
-    marketplace.methods
-      .createMarketItem(name, price, quantity)
-      .send({ from: account })
-      .once('receipt', (receipt) => {
-        this.setState({ loading: false });
-      });
+    const { account, contract } = this.state;
+    this.setState({ loading: true }, () => { 
+      contract.methods
+        .createMarketItem(name, price, quantity)
+        .send({ from: account })
+        .once('receipt', (receipt) => {
+          this.setState({ loading: false });
+        });
+    })
   }
 
   // handleClick(event){
