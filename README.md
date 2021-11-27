@@ -37,6 +37,9 @@ t.b.d
 **<h3 style="color:#FFC733">Public Ethereum account for certification</h3>** 
 0x6dbFEFC3f410aDAB65DB9726Fde0901071Fd837F
 ---
+**<h3 style="color:#FFC733">Public Ethereum account for certification</h3>** 
+0x6dbFEFC3f410aDAB65DB9726Fde0901071Fd837F
+---
 **<h3 style="color:#FFC733">Overview</h3>** 
 It comes as no shock that it’s common practice in some businesses and industries to overstate the scarcity of a certain item in order to spike demand and perceived value. This project provides a safe and secure way for buyers of commodities (fuel, medical and household goods, etc.) to make purchases with transparency about the seller’s available inventory at a previously locked in price and locked in quantities (DECLARED INVENTORY). This is especially useful for buyers during periods of crisis. The application takes  advantage of the blockchain's secure, verified and distributed ledger to manage inventory, verifying the supply chain of goods and limiting anyone’s ability to intentionally manipulate pricing by faking scarcity.       
 <p>&nbsp;</p> 
@@ -51,7 +54,7 @@ Consumers elect to purchase from suppliers who participate in this system of tra
 
 **<h3 style="color:#FFC733">Safeguards</h3>** 
 If a vendor makes fake claims, they will get punished by being expelled from participation in the marketplace. Their profits will be slashed.          
-<p>&nbsp;</p> 
+---
 
 **<h3 style="color:#FFC733">MVP</h3>** 
 MVP does not deal with separating seller and buyer functionality. Current application allows the user to add market items and buy market items in the same view.   
