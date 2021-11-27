@@ -58,10 +58,10 @@ MVP does not deal with separating seller and buyer functionality. Current applic
 <p>&nbsp;</p> 
 
 **<h3 style="color:#FFC733">MVP Workflow</h3>** 
-#* a seller will be able to add a market item, its price and quantity and see it populate the inventory list
-#* a buyer will see the DECLARED INVENTORY and price as well as the current stock availability 
-#* once the buyer elects how much product they want to buy, they will see the inventory update in real time
-<p>&nbsp;</p> 
+- a seller will be able to add a market item, its price and quantity and see it populate the inventory list
+- a buyer will see the DECLARED INVENTORY and price as well as the current stock availability 
+- once the buyer elects how much product they want to buy, they will see the inventory update in real time
+---
 
 **<h3 style="color:#FFC733">Directory Structure</h3>** 
 - client: Project's React frontend.
