@@ -8,27 +8,27 @@ t.b.d
 ---
 **<h3 style="color:#FFC733">To run the project locally:</h3>** 
 **<h4 style="color:#FFC733">Requirements:</h4>** 
-# Node.js 
-# Truffle 
-# Ganache
-# npm
-# ```git checkout main```
+#* Node.js 
+#* Truffle 
+#* Ganache
+#* npm
+#* ```git checkout main```
 ---  
 **<h4 style="color:#FFC733">Solidity backend:</h4>** 
-# run ```npm install``` in project root to install Truffle build and smart contract dependencies
-# run local testnet on port 8545 with Ganache
-# truffle migrate --network development
-# truffle console --network development
-# run tests in Truffle console with ```test```
-# development network chain id is 5777
+#* run ```npm install``` in project root to install Truffle build and smart contract dependencies
+#* run local testnet on port 8545 with Ganache
+#* truffle migrate --network development
+#* truffle console --network development
+#* run tests in Truffle console with ```test```
+#* development network chain id is 5777
 ---
 **<h4 style="color:#FFC733">React frontend:</h4>** 
-# cd client && run ```npm run start```
-# access the app locally on http://localhost:3000
-# your Metamask localhost network should be on port 8545 and chain id 5777
+#* cd client && run ```npm run start```
+#* access the app locally on http://localhost:3000
+#* your Metamask localhost network should be on port 8545 and chain id 5777
 --- 
 **<h4 style="color:#FFC733">Launching application:</h4>** 
-# cd client && run npm start
+#* cd client && run npm start
 ---
 **<h3 style="color:#FFC733">Screencast link</h3>** 
 t.b.d
@@ -60,16 +60,16 @@ MVP does not deal with separating seller and buyer functionality. Current applic
 <p>&nbsp;</p> 
 
 **<h3 style="color:#FFC733">MVP Workflow</h3>** 
-# a seller will be able to add a market item, its price and quantity and see it populate the inventory list
-# a buyer will see the DECLARED INVENTORY and price as well as the current stock availability 
-# once the buyer elects how much product they want to buy, they will see the inventory update in real time
+#* a seller will be able to add a market item, its price and quantity and see it populate the inventory list
+#* a buyer will see the DECLARED INVENTORY and price as well as the current stock availability 
+#* once the buyer elects how much product they want to buy, they will see the inventory update in real time
 
 <p>&nbsp;</p> 
 **<h3 style="color:#FFC733">Directory Structure</h3>** 
-# ```client:``` Project's React frontend.
-# ```contracts:``` Smart contracts that are deployed in the Ropsten testnet.
-# ```migrations:``` Migration files for deploying contracts in contracts directory.
-# ```test:``` Tests for smart contracts.
+#* ```client:``` Project's React frontend.
+#* ```contracts:``` Smart contracts that are deployed in the Ropsten testnet.
+#* ```migrations:``` Migration files for deploying contracts in contracts directory.
+#* ```test:``` Tests for smart contracts.
 <p>&nbsp;</p> 
 
 
