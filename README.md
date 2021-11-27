@@ -64,10 +64,10 @@ MVP does not deal with separating seller and buyer functionality. Current applic
 
 <p>&nbsp;</p> 
 **<h3 style="color:#FFC733">Directory Structure</h3>** 
-```client``` Project's React frontend.
- ```contracts:``` Smart contracts that are deployed in the Ropsten testnet.
- ```migrations:``` Migration files for deploying contracts in contracts directory.
- ```test:``` Tests for smart contracts.
+* ```client``` Project's React frontend.
+* ```contracts:``` Smart contracts that are deployed in the Ropsten testnet.
+* ```migrations:``` Migration files for deploying contracts in contracts directory.
+* ```test:``` Tests for smart contracts.
 <p>&nbsp;</p> 
 
 
