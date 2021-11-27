@@ -1,8 +1,8 @@
 
 **<h1 style="color:#A2FF33">supply chain management on the blockchain</h1>**
-(Final Project: Consensys Blockchain Developer Bootcamp)
-<br><h5><img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> 
-<br><h5>
+(Final Project: Consensys Blockchain Developer Bootcamp)<br>
+<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> 
+<h5><em>Nitashia Johnson for [The New York Times](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html).</em></h5>
 ---
 **<h3 style="color:#FFC733">To run the project locally:</h3>** 
 **<h4 style="color:#FFC733">Requirements:</h4>** 
@@ -46,6 +46,7 @@ It comes as no shock that it’s common practice in some businesses and industri
 
 **<h3 style="color:#FFC733">Seller</h3>** 
 The supplier must record both the price and quantity of their inventory six months before it is available for sale. At that point, both price and inventory are locked in regardless of future market conditions. 
+
 
 **<h3 style="color:#FFC733">Buyer</h3>** 
 Consumers elect to purchase from suppliers who participate in this system of transparency and accountability. As consumers purchase a good, the ledger is updated via Smart Contract and the updated stock values are revealed to all buyers. Inventory pricing and quantities are constantly verified over time making it very difficult to artificially manipulate their values. This secure marketplace for goods, especially in countries with uncertain market conditions, will attract a critical mass of buyers who prefer to make verified purchases thus putting pressure on suppliers to participate in the marketplace.   
