@@ -64,12 +64,13 @@ class App extends Component {
   };
 
   createItem(name, price, quantity) {
-    console.log(arguments)
+    console.log('this is 67', arguments)
     const { account, contract } = this.state;
     this.setState({ loading: true }, () => { 
+      console.log()
       contract.methods
-        .createMarketItem(name, price, quantity)
-        .send({ from: account , to: contract._address, value: price, gas: 100000 })
+        .createMarketItem(name, 100, 10)
+        .send({ from: account , to: contract._address, gas: 100000 })
         .once('receipt', (receipt) => {
           this.setState({ loading: false });
         });
