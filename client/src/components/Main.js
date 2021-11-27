@@ -53,10 +53,51 @@ export default function Main(props) {
               required
             />
           </div>
-          <button className="btn-edit">Submit</button>
-          <button className="btn-delete">Delete</button>
+          {/* <button className="btn-edit">Submit</button> */}
+          <button className="btn-delete">Submit</button>
         </div>
       </form>
+      <div>
+      <h1>buy product</h1>
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Price</th>
+              <th scope="col">Owner</th>
+              <th scope="col">Units</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="productList">
+            <tr>
+              <th scope="row">1</th>
+              <td>oil</td>
+              <td>1 Eth</td>
+              <td>0x39C7BC5496f4eaaa1fF75d88E079C22f0519E7b9</td>
+              <td>150</td>
+              <td><button className="btn-edit">Buy</button></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>copper</td>
+              <td>3 eth</td>
+              <td>0x39C7BC5496f4eaaa1fF75d88E079C22f0519E7b9</td>
+              <td>200</td>
+              <td><button className="btn-edit">Buy</button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>silver</td>
+              <td>0.5 eth</td>
+              <td>0x39C7BC5496f4eaaa1fF75d88E079C22f0519E7b9</td>
+              <td>180</td>
+              <td><button className="btn-edit">Buy</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }
