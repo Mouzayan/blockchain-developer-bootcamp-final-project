@@ -1,8 +1,40 @@
 
 **<h1 style="color:#A2FF33">supply chain management on the blockchain</h1>**
-
 (Final Project: Consensys Blockchain Developer Bootcamp)
 
+**<h3 style="color:#FFC733">Deployed project url</h3>** 
+T.B.D
+---
+**<h3 style="color:#FFC733">To run the project locally:</h3>** 
+**<h4 style="color:#FFC733">Requirements:</h4>** 
+    * Node.js 
+    * Truffle 
+    * Ganache
+    * npm
+    * ```git checkout main```
+---  
+**<h4 style="color:#FFC733">Solidity backend:</h4>** 
+    * run ```npm install``` in project root to install Truffle build and smart contract dependencies
+    * run local testnet on port 8545 with Ganache
+    * truffle migrate --network development
+    * truffle console --network development
+    * run tests in Truffle console with ```test```
+    * development network chain id is 5777
+---
+**<h4 style="color:#FFC733">React frontend:</h4>** 
+    * cd client && run ```npm run start```
+    * access the app locally on http://localhost:3000
+    * your Metamask localhost network should be on port 8545 and chain id 5777
+--- 
+**<h4 style="color:#FFC733">Launching application:</h4>** 
+    * cd client && run npm start
+---
+**<h3 style="color:#FFC733">Screencast link</h3>** 
+T.B.D
+---
+**<h3 style="color:#FFC733">Public Ethereum account for certification</h3>** 
+0x6dbFEFC3f410aDAB65DB9726Fde0901071Fd837F
+---
 <img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> <br><h5>
  *[Empty shelves](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html) by Nitashia Johnson for The New York Times.* </h5></br>   
 
@@ -23,13 +55,20 @@ If a vendor makes fake claims, they will get punished by being expelled from par
 <p>&nbsp;</p> 
 
 **<h3 style="color:#FFC733">MVP</h3>** 
-MVP only deals with the buyer side of the process. It presumes that the seller side is already present. 
+MVP does not deal with separating seller and buyer functionality. Current application allows the user to add market items and buy market items in the same view.   
 <p>&nbsp;</p> 
 
-**<h3 style="color:#FFC733">User Workflow</h3>** 
-  1. users will have to register and sign in to access the store
-  2. a user will see the DECLARED INVENTORY and price as well as the current stock availability 
-  3. once they elect how much product they want to buy, users will see the inventory update in real time
+**<h3 style="color:#FFC733">MVP Workflow</h3>** 
+    * a seller will be able to add a market item, its price and quantity and see it populate the inventory list
+    * a buyer will see the DECLARED INVENTORY and price as well as the current stock availability 
+    * once the buyer elects how much product they want to buy, they will see the inventory update in real time
+<p>&nbsp;</p> 
+---
+**<h3 style="color:#FFC733">Directory Structure</h3>** 
+    * ```client:``` Project's React frontend.
+    * ```contracts:``` Smart contracts that are deployed in the Ropsten testnet.
+    * ```migrations:``` Migration files for deploying contracts in contracts directory.
+    * ```test:``` Tests for smart contracts.
 <p>&nbsp;</p> 
 
 **<span style="color:#FF33D1">*Everything*<span/>**&nbsp;  will &nbsp;  be &nbsp;  <span style="color:#A2FF33">**alright**<span/>.
