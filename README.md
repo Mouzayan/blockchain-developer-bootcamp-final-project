@@ -1,7 +1,8 @@
 
 **<h1 style="color:#A2FF33">supply chain management on the blockchain</h1>**
 (Final Project: Consensys Blockchain Developer Bootcamp)
-
+<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> <br><h5>
+ *[Empty shelves](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html) by Nitashia Johnson for The New York Times.* </h5></br>   
 
 **<h3 style="color:#FFC733">Deployed project url</h3>** 
 t.b.d
@@ -36,9 +37,6 @@ t.b.d
 **<h3 style="color:#FFC733">Public Ethereum account for certification</h3>** 
 0x6dbFEFC3f410aDAB65DB9726Fde0901071Fd837F
 ---
-<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> <br><h5>
- *[Empty shelves](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html) by Nitashia Johnson for The New York Times.* </h5></br>   
-
 **<h3 style="color:#FFC733">Overview</h3>** 
 It comes as no shock that it’s common practice in some businesses and industries to overstate the scarcity of a certain item in order to spike demand and perceived value. This project provides a safe and secure way for buyers of commodities (fuel, medical and household goods, etc.) to make purchases with transparency about the seller’s available inventory at a previously locked in price and locked in quantities (DECLARED INVENTORY). This is especially useful for buyers during periods of crisis. The application takes  advantage of the blockchain's secure, verified and distributed ledger to manage inventory, verifying the supply chain of goods and limiting anyone’s ability to intentionally manipulate pricing by faking scarcity.       
 <p>&nbsp;</p> 
