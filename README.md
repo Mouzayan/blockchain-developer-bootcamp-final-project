@@ -61,7 +61,6 @@ MVP does not deal with separating seller and buyer functionality. Current applic
 #* a seller will be able to add a market item, its price and quantity and see it populate the inventory list
 #* a buyer will see the DECLARED INVENTORY and price as well as the current stock availability 
 #* once the buyer elects how much product they want to buy, they will see the inventory update in real time
-
 <p>&nbsp;</p> 
 **<h3 style="color:#FFC733">Directory Structure</h3>** 
 * client: Project's React frontend.
@@ -70,7 +69,9 @@ MVP does not deal with separating seller and buyer functionality. Current applic
 * ```test:``` Tests for smart contracts.
 <p>&nbsp;</p> 
 
-
+**<h3 style="color:#FFC733">MVP</h3>** 
+MVP does not deal with separating seller and buyer functionality. Current application allows the user to add market items and buy market items in the same view.   
+<p>&nbsp;</p> 
 
 
 
