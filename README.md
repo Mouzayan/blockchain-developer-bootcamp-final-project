@@ -3,8 +3,10 @@
 (Final Project: Consensys Blockchain Developer Bootcamp)<br>
 <img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> 
 <h5><em>Nitashia Johnson for [The New York Times](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html).</em></h5>
----
+
+
 **<h3 style="color:#FFC733">To run the project locally:</h3>** 
+
 **<h4 style="color:#FFC733">Requirements:</h4>** 
 - Node.js 
 - Truffle 
