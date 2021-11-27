@@ -17957,90 +17957,20 @@
   },
   "networks": {
     "5777": {
-      "events": {
-        "0x4627c48065af2a9648cbecdd4b9da340c00e501243cd49a8a71c30c987e8b761": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "sku",
-              "type": "uint256"
-            }
-          ],
-          "name": "LogForSale",
-          "type": "event"
-        },
-        "0x187c55416f37cfcc2c3a720ea22e07740a61deeb28b492aee9466a7c41b9f983": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "sku",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "string",
-              "name": "itemName",
-              "type": "string"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "qty",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "uint256",
-              "name": "itemPrice",
-              "type": "uint256"
-            },
-            {
-              "indexed": false,
-              "internalType": "address payable",
-              "name": "owner",
-              "type": "address"
-            },
-            {
-              "indexed": false,
-              "internalType": "bool",
-              "name": "purchased",
-              "type": "bool"
-            }
-          ],
-          "name": "LogSold",
-          "type": "event"
-        },
-        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
-          "anonymous": false,
-          "inputs": [
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "previousOwner",
-              "type": "address"
-            },
-            {
-              "indexed": true,
-              "internalType": "address",
-              "name": "newOwner",
-              "type": "address"
-            }
-          ],
-          "name": "OwnershipTransferred",
-          "type": "event"
-        }
-      },
+      "events": {},
       "links": {},
-      "address": "0xD8902469135C73D9E140Ae160eF85636c789DD9a",
-      "transactionHash": "0x64ad1ade714f39be6dd4e4c4cf11a72908635a0799fbf8cffe0ea14f8b01de8d"
+      "address": "0x98A6054eCC9582ffa2509D360DD4FA3c1029fa19",
+      "transactionHash": "0x8cf76f4e1913431a74a09b04d62798524e0c379d953183ce9cd1384624de7ff1"
+    },
+    "1638040837307": {
+      "events": {},
+      "links": {},
+      "address": "0xE60C5163B7bD6A1f57796f76D01fEf779192605a",
+      "transactionHash": "0x7b01fad241d8d65f6bcdd4d0b8ed2832d793450fa9f9d405091b2c4ebd2b97ad"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-25T19:54:33.283Z",
+  "updatedAt": "2021-11-27T19:22:02.790Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
