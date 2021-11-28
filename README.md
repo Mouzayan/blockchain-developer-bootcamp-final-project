@@ -15,7 +15,7 @@
 - ```git checkout main```
 
 **<h4 style="color:#FFC733">Solidity backend:</h4>** 
-- run ```npm install``` in the client folder to install Truffle and smart contract dependencies
+- run ```npm install``` in the ```client``` folder to install Truffle and smart contract dependencies
 - run ```ganache-cli``` to start a local testnet on port 8545 
 - truffle migrate --network development
 - truffle console --network development

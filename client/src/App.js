@@ -72,7 +72,7 @@ class App extends Component {
       console.log()
       contract.methods
         .createMarketItem(name, price, quantity)
-        .send({ from: account, to: contract._address })
+        .send({ from: account, to: contract._address, gas: 100000 })
         .once('receipt', (receipt) => {
           this.setState({ loading: false });
         });
