@@ -17973,10 +17973,104 @@
       "links": {},
       "address": "0x0eFb160DD39Fa8b8388bC026a6C18E8eab40C1C5",
       "transactionHash": "0x53fa574b8ddfb585f037e4e7767253c76970213ab068d89abedb48976ed7372a"
+    },
+    "1638057538427": {
+      "events": {},
+      "links": {},
+      "address": "0x39cb353988e1890D826A2d58955c73828d92b983",
+      "transactionHash": "0xea75f213d8e4e66f42774311c342b97e09c4527789a886060380934dc0d17b46"
+    },
+    "1638059303963": {
+      "events": {},
+      "links": {},
+      "address": "0x3542b6c2385Bae1908fdA6d0d96b29ed6E8Faed8",
+      "transactionHash": "0xff90ee2ef1dce49ff1774a47148a724bdf6093659fd9d3d1c6c582ba76b90dbc"
+    },
+    "1638110817296": {
+      "events": {
+        "0x4627c48065af2a9648cbecdd4b9da340c00e501243cd49a8a71c30c987e8b761": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "sku",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogForSale",
+          "type": "event"
+        },
+        "0x187c55416f37cfcc2c3a720ea22e07740a61deeb28b492aee9466a7c41b9f983": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "sku",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "itemName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "qty",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemPrice",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "purchased",
+              "type": "bool"
+            }
+          ],
+          "name": "LogSold",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x07DAae59b55c251209C5185AEbf8A349Ef779DA1",
+      "transactionHash": "0x65a596c9711e4a15c31217d42fc1c68ef6b0e727b23ac0497e35bbe92ec9d124"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-27T23:03:04.645Z",
+  "updatedAt": "2021-11-28T15:23:11.375Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

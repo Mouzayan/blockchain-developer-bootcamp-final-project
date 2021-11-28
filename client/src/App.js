@@ -36,7 +36,7 @@ class App extends Component {
         MarketPlaceContract.networks[networkId].address
       );
       const deployedNetwork = MarketPlaceContract.networks[networkId];
-      console.log(deployedNetwork)
+      console.log('this is the deployed network', deployedNetwork)
       const instance = new web3.eth.Contract(
         MarketPlaceContract.abi,
         deployedNetwork && deployedNetwork.address
@@ -59,18 +59,20 @@ class App extends Component {
     const { contract } = this.state;
 
     const itemCount = await contract.methods.skuCount().call()
-    console.log('this is item count -------', itemCount)
+    console.log('this is the item skuCount -------', itemCount)
+    return itemCount
 
   };
 
+//.send({ from: account , to: contract._address, gas: 100000 })
   createItem(name, price, quantity) {
     console.log('this is 67', arguments)
     const { account, contract } = this.state;
     this.setState({ loading: true }, () => { 
       console.log()
       contract.methods
-        .createMarketItem(name, 100, 10)
-        .send({ from: account , to: contract._address, gas: 100000 })
+        .createMarketItem(name, price, quantity)
+        .send({ from: account, to: contract._address })
         .once('receipt', (receipt) => {
           this.setState({ loading: false });
         });

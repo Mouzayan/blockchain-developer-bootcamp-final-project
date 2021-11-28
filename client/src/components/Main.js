@@ -16,6 +16,7 @@ export default function Main(props) {
         onSubmit={(e) => {
           e.preventDefault();
           const convertedPrice = props.web3.utils.toWei(price, 'Ether');
+          console.log('conv price', convertedPrice)
           props.createItem(name, convertedPrice, qty);
         }}
       >

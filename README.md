@@ -1,8 +1,8 @@
 
 **<h1 style="color:#A2FF33">supply chain management on the blockchain</h1>**
 (Final Project: Consensys Blockchain Developer Bootcamp)<br>
-<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/> 
-<em><h6>Nitashia Johnson for [The New York Times](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html). </h6></em>
+<img src="assets/00Shortages-1-superJumbo.jpeg" alt="Empty Shelves at Target" width="700"/><em><h6>Nitashia Johnson for [The New York Times](https://www.nytimes.com/2021/06/01/business/coronavirus-global-shortages.html). </h6></em> 
+
 
 
 **<h3 style="color:#FFC733">To run the project locally:</h3>** 
@@ -15,8 +15,8 @@
 - ```git checkout main```
 
 **<h4 style="color:#FFC733">Solidity backend:</h4>** 
-- run ```npm install``` in project root to install Truffle build and smart contract dependencies
-- run local testnet on port 8545 with Ganache
+- run ```npm install``` in the client folder to install Truffle and smart contract dependencies
+- run ```ganache-cli``` to start a local testnet on port 8545 
 - truffle migrate --network development
 - truffle console --network development
 - run tests in Truffle console with ```test```
