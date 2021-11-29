@@ -13,11 +13,12 @@ class App extends Component {
       accounts: null,
       contract: null,
       account: '',
-      skuCount: 0,
+      itemCount: 0,
       items: [],
       loading: true,
     };
     this.createItem = this.createItem.bind(this);
+    this.purchaseItem = this.purchaseItem.bind(this);
     // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -60,19 +61,34 @@ class App extends Component {
 
     const itemCount = await contract.methods.skuCount().call()
     console.log('this is the item skuCount -------', itemCount)
-    return itemCount
-
+    this.setState({ itemCount })
+    for (let i=1; i <= itemCount; i++){
+      const item = await contract.methods.items(i).call()
+      this.setState({
+        items: [...this.state.items, item]
+      })
+    }
   };
 
-//.send({ from: account , to: contract._address, gas: 100000 })
   createItem(name, price, quantity) {
     console.log('this is 67', arguments)
     const { account, contract } = this.state;
     this.setState({ loading: true }, () => { 
-      console.log()
       contract.methods
         .createMarketItem(name, price, quantity)
-        .send({ from: account, to: contract._address, gas: 100000 })
+        .send({ from: account, to: contract._address })
+        .once('receipt', (receipt) => {
+          this.setState({ loading: false });
+        });
+    })
+  }
+
+   purchaseItem(sku, price) {
+    const { account, contract } = this.state;
+    this.setState({ loading: true }, () => { 
+      contract.methods
+        .buyItem(sku, price)
+        .send({ from: account, to: contract._address, value: price })
         .once('receipt', (receipt) => {
           this.setState({ loading: false });
         });
@@ -131,7 +147,11 @@ class App extends Component {
               <p>"Loading..."</p>
             </div>
           ) : (
-            <Main createItem={this.createItem} web3={this.state.web3} />
+            <Main 
+            web3={this.state.web3}
+            items={this.state.items}
+            purchaseItem={this.purchaseItem}
+            createItem={this.createItem}  />
           )}
         </div>
       </div>

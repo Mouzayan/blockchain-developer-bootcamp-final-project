@@ -79,7 +79,7 @@ contract MarketPlace is ReentrancyGuard, Ownable {
         return true;
     }
 
-        function buyItem(uint _sku, uint qty) public payable // purchase qty = 3, stock items[_sku].qty =10
+        function buyItem(uint _sku, uint qty, uint price) public payable // purchase qty = 3, stock items[_sku].qty =10
             onSale(_sku)
             paidEnough(items[_sku].itemPrice, qty)
             checkValue(_sku,  qty)
