@@ -62,12 +62,14 @@ class App extends Component {
     const itemCount = await contract.methods.skuCount().call()
     console.log('this is the item skuCount -------', itemCount)
     this.setState({ itemCount })
+    const items = [] 
     for (let i=1; i <= itemCount; i++){
       const item = await contract.methods.items(i).call()
-      this.setState({
-        items: [...this.state.items, item]
-      })
+      items.push(item)
     }
+    this.setState({
+      items
+    })
   };
 
   createItem(name, price, quantity) {
@@ -79,55 +81,23 @@ class App extends Component {
         .send({ from: account, to: contract._address })
         .once('receipt', (receipt) => {
           this.setState({ loading: false });
+          this.runList()
         });
     })
   }
 
-   purchaseItem(sku, price) {
+   purchaseItem(sku, quantity) {
+     console.log('this is 77', arguments)
     const { account, contract } = this.state;
     this.setState({ loading: true }, () => { 
       contract.methods
-        .buyItem(sku, price)
-        .send({ from: account, to: contract._address, value: price })
+        .buyItem(sku, quantity)
+        .send({ from: account, to: contract._address })
         .once('receipt', (receipt) => {
           this.setState({ loading: false });
         });
     })
   }
-
-  // handleClick(event){
-  //   const contract = this.state.contract;
-  //   const accounts = this.state.accounts;
-  //   let value = 3
-  //   contract.methods.set(value).send({ from: accounts[0] })
-  //   .then(result => {
-  //     return contract.methods.get().call()
-  //   }).then(result => {
-  //     return this.setState({storageValue: result})
-  //   })
-  // }
-
-  // handleInputChange = (e) => {
-  //   const target = e.target;
-  //   const value = target.value;
-  //   const inputValue = value.replace(/\D/g, '')
-  //   this.setState({
-  //     inputValue
-  //   })
-  // }
-
-  // handleSubmit = (e) => {
-  //   const contract = this.state.contract;
-  //   const accounts = this.state.accounts;
-  //   e.preventDefault()
-  //   let value = this.state.inputValue
-  //   contract.methods.set(value).send({ from: accounts[0] })
-  //   .then(result => {
-  //     return contract.methods.get().call()
-  //   }).then(result => {
-  //     return this.setState({storageValue: result})
-  //   })
-  // }
 
   isValid() {
     if (this.state.inputValue === '') return false;

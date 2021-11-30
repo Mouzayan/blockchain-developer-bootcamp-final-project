@@ -7,6 +7,8 @@ export default function Main(props) {
   const [name, updateName] = useState('');
   const [price, updatePrice] = useState('');
   const [qty, updateQty] = useState('');
+  const [purchaseQty, updatePurchaseQty] = useState('');
+  const [sku, updateSku] = useState('');
 
   return (
     <div className="home">
@@ -54,12 +56,45 @@ export default function Main(props) {
               required
             />
           </div>
-          {/* <button className="btn-edit">Submit</button> */}
           <button className="btn-delete">Submit</button>
         </div>
       </form>
       <div>
-      <h1>buy product</h1>
+      <h1>available product</h1>
+      {/* <h1>buy product</h1> */}
+        {/* <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          e.stopPropagation()
+          props.purchaseItem(sku, purchaseQty);
+        }}
+      >
+        <div className="snippet">
+          <div>
+            <input
+              id="itemSku"
+              type="number"
+              value={sku}
+              onChange={(e) => updateSku(e.target.value)}
+              className="form-control"
+              placeholder="Enter product sku"
+              required
+            />
+          </div>
+          <div>
+            <input
+              id="itemPrice"
+              type="number"
+              value={purchaseQty}
+              onChange={(e) => updatePurchaseQty(e.target.value)}
+              className="form-control"
+              placeholder="Enter purchase quantity"
+              required
+            />
+          </div>
+        </div>
+      </form> */}
+
         <table className="table">
           <thead>
             <tr>
@@ -82,11 +117,9 @@ export default function Main(props) {
                   <td>{item.qty}</td>
                   <td>
                     <button className="btn-edit" 
-                      name={item.sku}
-                      value = {item.itemPrice}
-                      onClick={(e) => {
-                        props.purchaseItem(e.target.name, e.target.value)
-                      }}
+                      // onClick={(e) => {
+                      //   props.purchaseItem(sku, purchaseQty)
+                      // }}
                     >
                       Buy
                     </button>
