@@ -72,6 +72,19 @@ class App extends Component {
     })
   };
 
+  detectAccountChange() {
+    const ethereum = window.ethereum
+    if(ethereum) {
+      ethereum.on('accountsChanged', function (accounts) {
+        window.location.reload()
+      })
+      ethereum.on('chainChanged', () => {
+        window.location.reload()
+        this.loadBlockchainData()
+      })
+    }
+  }
+
   createItem(name, price, quantity) {
     console.log('this is 67', arguments)
     const { account, contract } = this.state;

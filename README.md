@@ -39,7 +39,7 @@ t.b.d
 ---
 
 **<h3 style="color:#FFC733">Public Ethereum account for certification</h3>** 
-0x6dbFEFC3f410aDAB65DB9726Fde0901071Fd837F
+0x6c6F915B21d43107d83c47541e5D29e872d82Da6
 
 ---
 
