@@ -143,7 +143,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -156,7 +157,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -176,7 +178,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -189,7 +192,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -231,7 +235,8 @@
         }
       ],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     },
     {
       "inputs": [
@@ -249,7 +254,8 @@
       "name": "buyItem",
       "outputs": [],
       "stateMutability": "payable",
-      "type": "function"
+      "type": "function",
+      "payable": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.10+commit.fc410830\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"sku\",\"type\":\"uint256\"}],\"name\":\"LogForSale\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"sku\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"itemName\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"qty\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"itemPrice\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address payable\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"purchased\",\"type\":\"bool\"}],\"name\":\"LogSold\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_sku\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"qty\",\"type\":\"uint256\"}],\"name\":\"buyItem\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_itemName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"_itemPrice\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_qty\",\"type\":\"uint256\"}],\"name\":\"createMarketItem\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"items\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"sku\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"itemName\",\"type\":\"string\"},{\"internalType\":\"uint256\",\"name\":\"itemPrice\",\"type\":\"uint256\"},{\"internalType\":\"enum MarketPlace.SaleState\",\"name\":\"state\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"qty\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"itemsSold\",\"type\":\"uint256\"},{\"internalType\":\"address payable\",\"name\":\"owner\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"startBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endBlock\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"saleTotal\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"purchased\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"salesCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"skuCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Marketplace.sol\":\"MarketPlace\"},\"evmVersion\":\"london\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0xa1b27b3f44ff825974e5268e8f63ad3b03add5b464880d860fbb8cae043e17f7\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ad0fb4425453220f15bdb8c4e009052839804bb725797b6d8c02ee2271bc3c23\",\"dweb:/ipfs/QmPtjdMxzEifPUEUa6cKX1yfTWjaZV6QtdwMdN6bEL9FBM\"]},\"@openzeppelin/contracts/security/ReentrancyGuard.sol\":{\"keccak256\":\"0x86ebc6cea2b539c2d4a79a4754f7c90c43c45c9aaf0aab32ecffb1565afc5e0b\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://1d8016f7e49bd65a14769d2c846a7e589603e51c4bf82da94315cc59f54fe2e4\",\"dweb:/ipfs/Qmd92BAbMLEbYYfRWwN1yqDTxEuguenmQ35YFbPh3KEFuP\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x7736c187e6f1358c1ea9350a2a21aa8528dec1c2f43b374a9067465a3a51f5d3\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://4fd625dca17657403af518cc6c8ab5c54c58898cf6e912ca2e1b0f3194ad0405\",\"dweb:/ipfs/QmQVv7YeeKmaS11bg7YDTeeGDk6i7sV8LMMfohaLM4SiRu\"]},\"project:/contracts/Marketplace.sol\":{\"keccak256\":\"0xf0a73cf540e860ae32fa1fac1f2ab61cd4f9db8d59929da71913456991f7fcfd\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://0480a3cd286f5741468d71213927dc8829cdc8637b532345c59ca2dca848ebd9\",\"dweb:/ipfs/QmTJXBNZHwQVLEK3ZYrxLzn5d1ecFSoe4xEKEYiJJeCCtj\"]}},\"version\":1}",
@@ -17950,6 +17956,12 @@
     "version": "0.8.10+commit.fc410830.Emscripten.clang"
   },
   "networks": {
+    "4": {
+      "events": {},
+      "links": {},
+      "address": "0x8412cCAa1c3D4C21FC4A284B6FEdc5fD224A2616",
+      "transactionHash": "0xb8cc5cb6b10922326f88e430b5bf7c663fe5ea7efb468442abb0bddd155d8d1b"
+    },
     "5777": {
       "events": {},
       "links": {},
@@ -18161,10 +18173,93 @@
       "links": {},
       "address": "0x4b15e65e953198aCFC3C01a055910F3D08B00d99",
       "transactionHash": "0xef36a07973559f65a5f83e9d2efdcd85a0003089e2093b225b0e262b53e933fb"
+    },
+    "1638315377152": {
+      "events": {
+        "0x4627c48065af2a9648cbecdd4b9da340c00e501243cd49a8a71c30c987e8b761": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "sku",
+              "type": "uint256"
+            }
+          ],
+          "name": "LogForSale",
+          "type": "event"
+        },
+        "0x187c55416f37cfcc2c3a720ea22e07740a61deeb28b492aee9466a7c41b9f983": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "sku",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "itemName",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "qty",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "itemPrice",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address payable",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "purchased",
+              "type": "bool"
+            }
+          ],
+          "name": "LogSold",
+          "type": "event"
+        },
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0xE375Fac38dA5d68486064e0D9e37c194975C11EC",
+      "transactionHash": "0x3ec681fa3c6954d0a3b4642cacc3e3101d4462eb90b652fec815f08eb915a9f1"
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-11-29T23:02:45.019Z",
+  "updatedAt": "2021-12-01T00:10:33.043Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {
