@@ -7,8 +7,8 @@ export default function Main(props) {
   const [name, updateName] = useState('');
   const [price, updatePrice] = useState('');
   const [qty, updateQty] = useState('');
-  const [purchaseQty, updatePurchaseQty] = useState('');
-  const [sku, updateSku] = useState('');
+  // const [purchaseQty, updatePurchaseQty] = useState('');
+  // const [sku, updateSku] = useState('');
 
   return (
     <div className="home">
