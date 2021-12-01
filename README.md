@@ -17,10 +17,10 @@ Consumers elect to purchase from suppliers who participate in this system of tra
 If a vendor makes fake claims, they will get punished by being expelled from participation in the marketplace. Their profits will be slashed.   
 ---
 **<h3 style="color:#FFC733">Project url</h3>** 
-https://mouzayan-crypto.netlify.app/
+[DApp](https://mouzayan-crypto.netlify.app/)
 ---
-**<h4 style="color:#FFC733">Screencast Link</h4>** 
-t.b.d.
+**<h4 style="color:#FFC733">Screencast</h4>** 
+[Vimeo link](https://vimeo.com/651844175)
 ---
 **<h3 style="color:#FFC733">TO RUN THE PROJECT LOCALLY</h3>** 
 **<h4 style="color:#FFC733">Requirements:</h4>** 
