@@ -4,6 +4,10 @@ pragma solidity >=0.7.0 <0.9.0;
 import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
+/// @title A supply chain transparency system
+/// @author Mouzayan Delbourgo
+/// @notice You can use this contract to track inventory at a fixed price for 6 months
+/// @dev All function calls are currently implemented without side effects
 contract MarketPlace is ReentrancyGuard, Ownable {
     uint public skuCount = 0;
     uint public salesCount = 0; //to keep track of how many purchases are stored in the mapping
@@ -53,7 +57,8 @@ contract MarketPlace is ReentrancyGuard, Ownable {
         payable(msg.sender).transfer(amountToRefund);
     }
 
-    
+    /// @notice Created a market item with sku count, price, quantity, startblock and endblock
+    /// @return Returns a boolean
     function createMarketItem(string memory _itemName, uint _itemPrice, uint _qty) payable public
         nonReentrant returns (bool)
     {
@@ -79,7 +84,9 @@ contract MarketPlace is ReentrancyGuard, Ownable {
         return true;
     }
 
-        function buyItem(uint _sku, uint qty) public payable // purchase qty = 3, stock items[_sku].qty =10
+        /// @notice Buy a market item and decrease the stock quantity on a public chain
+        /// @dev Applies the ReentrancyGuard contract
+        function buyItem(uint _sku, uint qty) public payable 
             onSale(_sku)
             paidEnough(items[_sku].itemPrice, qty)
             checkValue(_sku,  qty)
